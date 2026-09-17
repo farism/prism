@@ -1,0 +1,8 @@
+{
+    "provides": "prism",
+    "sources": ["src/**"],
+    "targets": {
+        "windows-x64": {},
+        "linux-x64": {}
+    }
+}

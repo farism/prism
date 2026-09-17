@@ -1,0 +1,12 @@
+{
+    "sources": ["src/**"],
+    "test-sources": ["test/**"],
+    "targets": {
+        "windows-x64": {
+            "type": "executable"
+        },
+        "linux-x64": {
+            "type": "executable"
+        }
+    }
+}
