@@ -26,7 +26,30 @@ ColorOklabPolar
 
 `ColorRGBA` can be used to reduce memory usage, or `ColorRGB` if you do not need the alpha channel.
 
-## Function API
+## Create a `Color`
+
+```c3
+Color red = {1, 0, 0, 1};
+
+assert(prism::to(red, ColorRGBA) == prism::rgba(255, 0, 0));
+```
+
+## Convert to a `uint`
+
+```c3
+assert(prism::color(1, 0, 0).value() == 0xFF0000FF);
+```
+
+## Use other color spaces, like `ColorRGBA`
+
+```c3
+ColorRGBA red = {255, 0, 0, 255};
+ColorRGBA red = prism::rgba(255, 0, 0, 255);
+ColorRGBA red = prism::rgba(255, 0, 0);
+assert(red.value() == 0xFF0000FF);
+```
+
+## Function/Method API
 
 The following functions and macros are available as methods for all color spaces:
 
@@ -91,49 +114,6 @@ oklab()
 oklab_polar()
 ```
 
-## There are multiple ways to convert between color spaces
-
-### 1. Use shorthand methods
-
-```c3
-Color red = {1, 0, 0, 1};
-
-assert(red.rgb().color().hsl().color() == red);
-```
-
-### 2. Use `to` methods
-
-```c3
-ColorRGBA red = {255, 0, 0, 255};
-
-assert(red.to(Color).to(ColorRGBA) == red);
-```
-
-## 3. Use `to` macro directly
-
-## Create a `Color`
-
-```c3
-Color red = {1, 0, 0, 1};
-
-assert(prism::to(red, ColorRGBA) == prism::rgba(255, 0, 0));
-```
-
-## Convert to a `uint`
-
-```c3
-assert(prism::color(1, 0, 0).value() == 0xFF0000FF);
-```
-
-## Use other color spaces, like `ColorRGBA`
-
-```c3
-ColorRGBA red = {255, 0, 0, 255};
-ColorRGBA red = prism::rgba(255, 0, 0, 255);
-ColorRGBA red = prism::rgba(255, 0, 0);
-assert(red.value() == 0xFF0000FF);
-```
-
 ## Convert between Color and other color spaces
 
 ```c3
@@ -155,6 +135,33 @@ ColorHSL red_hsl = red.color().hsl();
 
 // or use `to`
 ColorHSL red_hsl = red.to(ColorHSL);
+```
+
+## There are multiple ways to convert between color spaces
+
+### 1. Use shorthand methods
+
+```c3
+Color red = {1, 0, 0, 1};
+
+assert(red.rgb().color().hsl().color() == red);
+```
+
+### 2. Use `to` methods
+
+```c3
+ColorRGBA red = {255, 0, 0, 255};
+
+assert(red.to(Color).to(ColorRGBA) == red);
+```
+
+## 3. Use `to` macro directly
+
+```c3
+Color red = {1, 0, 0, 1};
+ColorRGBA red_rgba = {255, 0, 0, 255};
+
+assert(prism::to(red_rgba, Color) == red);
 ```
 
 ## Perform equality checks
